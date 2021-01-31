@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SummerveldHoundResort.Infrastructure.Interfaces.Dapper;
 using SummerveldHoundResort.Infrastructure.Services;
+using SummerveldHoundResort.Infrastructure.Enum;
+using SummerveldHoundResort.Infrastructure.Factories;
+using SummerveldHoundResort.Infrastructure.Repositories;
+using SummerveldHoundResort.Infrastructure.Interfaces;
 
 namespace SummerveldHoundResort.WebAPI
 {
@@ -38,6 +42,16 @@ namespace SummerveldHoundResort.WebAPI
             services.AddDbContext<DataContext.AppDbContext>(options =>
                           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IDapper, DapperService>();
+
+            var connectionDict = new Dictionary<DbConnectionName, string>
+            {
+                { DbConnectionName.SummerveldHoundResortDev, this.Configuration.GetConnectionString("DefaultConnection") }
+            };
+
+            services.AddSingleton<IDictionary<DbConnectionName, string>>(connectionDict);
+
+            services.AddTransient<IDbConnectionFactory, DbConnectionFactory>()
+                    .AddTransient<IDoggo, DoggoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
