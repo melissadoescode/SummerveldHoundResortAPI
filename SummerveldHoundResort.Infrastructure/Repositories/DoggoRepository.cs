@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 
 namespace SummerveldHoundResort.Infrastructure.Repositories
 {
-    public class DoggoRepository : DbConnectionDevRepository, IDoggo
+    public class DoggoRepository : DbConnectionDevRepository, IDoggoRepository
     {
         public DoggoRepository(IDbConnectionFactory dbConnectionFactory) : base(dbConnectionFactory)
         {
 
         }
 
-        public void CreateDoggo(Doggo doggo)
+        public async Task Create(Doggo doggo)
         {
-            DbConnection.Execute("createDoggo",
+            await DbConnection.ExecuteAsync("createDoggo",
                 new
                 {
                     DoggoId = doggo.DoggoId,
@@ -29,27 +29,27 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                     DoggoProfilePic = doggo.DoggoProfilePic,
                     DoggoDescription  = doggo.DoggoDescription,
                     DoggoNickname = doggo.DoggoNickname,
-                    DoggoDateCreated = doggo.DoggoDateCreated
+                    DoggoDateCreated = DateTime.Now
                 }, commandType: CommandType.StoredProcedure);
         }
 
-        public void GetAllDoggos()
+        public async Task GetAll()
         {
-            DbConnection.Query("getAllDoggos", commandType: CommandType.StoredProcedure);
+            await DbConnection.QueryAsync("getAllDoggos", commandType: CommandType.StoredProcedure);
         }
 
-        public void GetDoggoById(int doggoId)
+        public async Task GetById(int doggoId)
         {
-            DbConnection.Query("getDoggoById", 
+            await DbConnection.QueryAsync("getDoggoById", 
                 new 
                 { 
                     DoggoId = doggoId
                 }, commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdateDoggo(Doggo doggo)
+        public async Task Update(Doggo doggo)
         {
-            DbConnection.Execute("updateDoggo",
+            await DbConnection.ExecuteAsync("updateDoggo",
                 new
                 {
                     DoggoId = doggo.DoggoId,
@@ -57,13 +57,13 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                     DoggoProfilePic = doggo.DoggoProfilePic,
                     DoggoDescription = doggo.DoggoDescription,
                     DoggoNickname = doggo.DoggoNickname,
-                    DoggoDateCreated = doggo.DoggoDateCreated
+                    DoggoDateCreated = DateTime.Now
                 }, commandType: CommandType.StoredProcedure);
         }
 
-        public void DeleteDoggo(int doggoId)
+        public async Task Delete(int doggoId)
         {
-            DbConnection.Execute("deleteDoggo",
+            await DbConnection.ExecuteAsync("deleteDoggo",
                 new
                 {
                     DoggoId = doggoId

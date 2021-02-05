@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SummerveldHoundResort.Infrastructure.Interfaces
 {
-    public interface IDoggo
+    public interface IUnitOfWork
     {
+        IDoggoRepository Doggos { get; }
     }
 }
