@@ -1,4 +1,5 @@
-﻿using SummerveldHoundResort.Infrastructure.Enum;
+﻿using MySql.Data.MySqlClient;
+using SummerveldHoundResort.Infrastructure.Enum;
 using SummerveldHoundResort.Infrastructure.Interfaces.Dapper;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace SummerveldHoundResort.Infrastructure.Factories
 {

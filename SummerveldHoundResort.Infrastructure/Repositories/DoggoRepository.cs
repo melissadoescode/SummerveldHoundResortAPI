@@ -19,9 +19,9 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
 
         }
 
-        public async Task Create(Doggo doggo)
+        public async Task<int> Create(Doggo doggo)
         {
-            await DbConnection.ExecuteAsync("createDoggo",
+            return await DbConnection.ExecuteAsync("createDoggo",
                 new
                 {
                     DoggoId = doggo.DoggoId,
@@ -33,23 +33,25 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                 }, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task GetAll()
+        public async Task<List<Doggo>> GetAll()
         {
-            await DbConnection.QueryAsync("getAllDoggos", commandType: CommandType.StoredProcedure);
+            var get = await DbConnection.QueryAsync<Doggo>("getAllDoggos", commandType: CommandType.StoredProcedure);
+            return get.ToList();
         }
 
-        public async Task GetById(int doggoId)
+        public async Task<Doggo> GetById(int doggoId)
         {
-            await DbConnection.QueryAsync("getDoggoById", 
+            var getById = await DbConnection.QueryAsync<Doggo>("getDoggoById", 
                 new 
                 { 
                     DoggoId = doggoId
                 }, commandType: CommandType.StoredProcedure);
+            return getById.FirstOrDefault();
         }
 
-        public async Task Update(Doggo doggo)
+        public async Task<int> Update(Doggo doggo)
         {
-            await DbConnection.ExecuteAsync("updateDoggo",
+           return await DbConnection.ExecuteAsync("updateDoggo",
                 new
                 {
                     DoggoId = doggo.DoggoId,
@@ -61,9 +63,9 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                 }, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task Delete(int doggoId)
+        public async Task<int> Delete(int doggoId)
         {
-            await DbConnection.ExecuteAsync("deleteDoggo",
+            return await DbConnection.ExecuteAsync("deleteDoggo",
                 new
                 {
                     DoggoId = doggoId

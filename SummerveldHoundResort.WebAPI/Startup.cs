@@ -18,6 +18,7 @@ using SummerveldHoundResort.Infrastructure.Enum;
 using SummerveldHoundResort.Infrastructure.Factories;
 using SummerveldHoundResort.Infrastructure.Repositories;
 using SummerveldHoundResort.Infrastructure.Interfaces;
+using SummerveldHoundResort.WebAPI.DataContext;
 
 namespace SummerveldHoundResort.WebAPI
 {
@@ -40,14 +41,16 @@ namespace SummerveldHoundResort.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SummerveldHoundResort.WebAPI", Version = "v1" });
             });
-            services.AddDbContext<DataContext.AppDbContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
                           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<IDapper, DapperService>();
 
             var connectionDict = new Dictionary<DbConnectionName, string>
             {
-                { DbConnectionName.SummerveldHoundResortDev, this.Configuration.GetConnectionString("DefaultConnection") }
+                { DbConnectionName.SummerveldHoundResortDev, this.Configuration.GetConnectionString("DevSql") }
             };
+
 
             services.AddSingleton<IDictionary<DbConnectionName, string>>(connectionDict);
         }

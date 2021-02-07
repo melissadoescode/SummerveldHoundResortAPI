@@ -15,8 +15,6 @@ namespace SummerveldHoundResort.WebAPI
     {
         public static void Setup(IServiceCollection services)
         {
-            services
-                .AddAutoMapper(typeof(Startup));
             SetupScoped(services);
             SetupTransient(services);
             SetupSingleton(services);
@@ -26,7 +24,8 @@ namespace SummerveldHoundResort.WebAPI
         {
             // Transient - Always a new instance
             services
-                .AddTransient<IDbConnectionFactory, DbConnectionFactory>();
+                .AddTransient<IDbConnectionFactory, DbConnectionFactory>()
+                .AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         private static void SetupScoped(IServiceCollection services)

@@ -8,10 +8,10 @@ namespace SummerveldHoundResort.Infrastructure.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task Create(T entity);
-        Task GetById(int id);
-        Task GetAll();
-        Task Update(T entity);
-        Task Delete(int id);
+        Task<int> Create(T entity);
+        Task<T> GetById(int id);
+        Task<List<T>> GetAll();
+        Task<int> Update(T entity);
+        Task<int> Delete(int id);
     }
 }
