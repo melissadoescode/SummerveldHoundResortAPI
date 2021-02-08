@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SummerveldHoundResort.WebAPI.Properties
+namespace SummerveldHoundResort.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
