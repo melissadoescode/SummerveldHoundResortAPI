@@ -21,10 +21,9 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
 
         public async Task<int> Create(Doggo doggo)
         {
-            return await DbConnection.ExecuteAsync("createDoggo",
+            return await DbConnection.ExecuteAsync("CreateDoggo",
                 new
                 {
-                    DoggoId = doggo.DoggoId,
                     DoggoName = doggo.DoggoName,
                     DoggoProfilePic = doggo.DoggoProfilePic,
                     DoggoDescription  = doggo.DoggoDescription,

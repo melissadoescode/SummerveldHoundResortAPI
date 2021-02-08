@@ -46,6 +46,13 @@ namespace SummerveldHoundResort.WebAPI
 
             services.AddScoped<IDapper, DapperService>();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             var connectionDict = new Dictionary<DbConnectionName, string>
             {
                 { DbConnectionName.SummerveldHoundResortDev, this.Configuration.GetConnectionString("DevSql") }
@@ -68,6 +75,8 @@ namespace SummerveldHoundResort.WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 

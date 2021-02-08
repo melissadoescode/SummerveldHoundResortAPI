@@ -10,11 +10,13 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
 
-        public UnitOfWork(IDoggoRepository doggoRepository)
+        public UnitOfWork(IDoggoRepository doggoRepository, IIconRepository iconRepository)
         {
             Doggos = doggoRepository;
+            Icons = iconRepository;
         }
 
         public IDoggoRepository Doggos { get; }
+        public IIconRepository Icons { get; }
     }
 }

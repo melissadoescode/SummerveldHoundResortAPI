@@ -33,7 +33,8 @@ namespace SummerveldHoundResort.WebAPI
             // Scoped - Creates a new instance per web request 
             services
                 // Database
-                .AddScoped<IDoggoRepository, DoggoRepository>();
+                .AddScoped<IDoggoRepository, DoggoRepository>()
+                .AddScoped<IIconRepository, IconRepository>();
         }
 
         private static void SetupSingleton(IServiceCollection services)
