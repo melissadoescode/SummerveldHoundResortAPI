@@ -2,6 +2,7 @@
 using SummerveldHoundResort.Infrastructure.Interfaces;
 using SummerveldHoundResort.Infrastructure.Interfaces.Dapper;
 using SummerveldHoundResort.Infrastructure.Models;
+using SummerveldHoundResort.Infrastructure.Models.ViewModels;
 using SummerveldHoundResort.Infrastructure.Repositories.DbConnection;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                     IconId = lifeEvent.IconId, 
                     LifeEventName = lifeEvent.LifeEventName, 
                     LifeEventDate = lifeEvent.LifeEventDate, 
-                    LifeEventDateCreated = lifeEvent.LifeEventDateCreated, 
+                    LifeEventDateCreated = DateTime.Now
                 }, commandType: CommandType.StoredProcedure);
         }
 
@@ -48,6 +49,16 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
             return getById.FirstOrDefault();
         }
 
+        public async Task<LifeEventViewModel> GetLifeEventById(int doggoId)
+        {
+            var getById = await DbConnection.QueryAsync<LifeEventViewModel>("GetLifeEventByDoggoId",
+                            new
+                            {
+                                DoggoId = doggoId
+                            }, commandType: CommandType.StoredProcedure);
+            return getById.FirstOrDefault();
+        }
+
         public async Task<int> Update(LifeEvent lifeEvent)
         {
             return await DbConnection.ExecuteAsync("UpdateLifeEvent",
@@ -58,7 +69,7 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                      IconId = lifeEvent.IconId,
                      LifeEventName = lifeEvent.LifeEventName,
                      LifeEventDate = lifeEvent.LifeEventDate,
-                     LifeEventDateCreated = lifeEvent.LifeEventDateCreated,
+                     LifeEventDateCreated = DateTime.Now
                  }, commandType: CommandType.StoredProcedure);
         }
 

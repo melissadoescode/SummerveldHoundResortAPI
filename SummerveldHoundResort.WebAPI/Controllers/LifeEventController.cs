@@ -34,10 +34,20 @@ namespace SummerveldHoundResort.WebAPI.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("getById")]
         public async Task<IActionResult> GetById(int id)
         {
             var data = await unitOfWork.LifeEvents.GetById(id);
+            if (data == null) return Ok();
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("getDoggoById")]
+        public async Task<IActionResult> GetLifeEventById(int doggoId)
+        {
+            var data = await unitOfWork.LifeEvents.GetLifeEventById(doggoId);
             if (data == null) return Ok();
             return Ok(data);
         }
