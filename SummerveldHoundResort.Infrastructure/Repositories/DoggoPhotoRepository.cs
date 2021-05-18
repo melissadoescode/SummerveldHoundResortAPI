@@ -24,7 +24,6 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
             return await DbConnection.ExecuteAsync("CreateDoggoPhoto",
                 new
                 {
-                    DoggoContentId = doggoPhoto.DoggoContentId,
                     DoggoPhotoUrl = doggoPhoto.DoggoPhotoUrl,
                     DoggoPhotoDescription = doggoPhoto.DoggoPhotoDescription
                 }, commandType: CommandType.StoredProcedure);
@@ -52,7 +51,6 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                  new
                  {
                      DoggoPhotoId = doggoPhoto.DoggoPhotoId,
-                     DoggoContentId = doggoPhoto.DoggoContentId,
                      DoggoPhotoUrl = doggoPhoto.DoggoPhotoUrl,
                      DoggoPhotoDescription = doggoPhoto.DoggoPhotoDescription
                  }, commandType: CommandType.StoredProcedure);
