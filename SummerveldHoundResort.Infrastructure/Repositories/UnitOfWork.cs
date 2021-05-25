@@ -9,25 +9,20 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDoggoVideoRepository doggoVideoRepository;
 
-        public UnitOfWork(IDoggoRepository doggoRepository, IIconRepository iconRepository, ILifeEventRepository lifeEventRepository, IDoggoAlbumRepository doggoAlbumRepository, IDoggoContentRepository doggoContentRepository, IDoggoPhotoRepository doggoPhotoRepository, IDoggoVideoRepository doggoVideoRepository)
+        public UnitOfWork(IDoggoRepository doggoRepository, IIconRepository iconRepository, ILifeEventRepository lifeEventRepository, IAlbumRepository albumRepository, IContentRepository contentRepository)
         {
             Doggos = doggoRepository;
             Icons = iconRepository;
             LifeEvents = lifeEventRepository;
-            DoggoAlbums = doggoAlbumRepository;
-            DoggoContents = doggoContentRepository;
-            DoggoPhotos= doggoPhotoRepository;
-            DoggoVideos = doggoVideoRepository;
+            Albums = albumRepository;
+            Contents = contentRepository;
         }
 
         public IDoggoRepository Doggos { get; }
         public IIconRepository Icons { get; }
         public ILifeEventRepository LifeEvents { get; }
-        public IDoggoAlbumRepository DoggoAlbums { get; }
-        public IDoggoContentRepository DoggoContents{ get; }
-        public IDoggoPhotoRepository DoggoPhotos{ get; }
-        public IDoggoVideoRepository DoggoVideos { get; }
+        public IAlbumRepository Albums { get; }
+        public IContentRepository Contents { get; }
     }
 }

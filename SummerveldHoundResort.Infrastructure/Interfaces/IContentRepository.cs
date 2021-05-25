@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SummerveldHoundResort.Infrastructure.Interfaces
 {
-    public interface IDoggoContentRepository : IGenericRepository<DoggoContent>
+    public interface IContentRepository : IGenericRepository<Content>
     {
     }
 }

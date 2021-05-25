@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SummerveldHoundResort.Infrastructure.Interfaces;
 using SummerveldHoundResort.Infrastructure.Models;
 using System;
@@ -10,48 +11,48 @@ namespace SummerveldHoundResort.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DoggoVideoController : ControllerBase
+    public class ContentController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public DoggoVideoController(IUnitOfWork unitOfWork)
+        public ContentController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create(DoggoVideo doggoVideo)
+        public async Task<ActionResult<int>> Create(Content doggoContent)
         {
-            var data = await unitOfWork.DoggoVideos.Create(doggoVideo);
+            var data = await unitOfWork.Contents.Create(doggoContent);
             return Ok(data);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var data = await unitOfWork.DoggoVideos.GetAll();
+            var data = await unitOfWork.Contents.GetAll();
             return Ok(data);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var data = await unitOfWork.DoggoVideos.GetById(id);
+            var data = await unitOfWork.Contents.GetById(id);
             if (data == null) return Ok();
             return Ok(data);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(DoggoVideo doggoVideo)
+        public async Task<IActionResult> Update(Content doggoContent)
         {
-            var data = await unitOfWork.DoggoVideos.Update(doggoVideo);
+            var data = await unitOfWork.Contents.Update(doggoContent);
             return Ok(data);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var data = await unitOfWork.DoggoVideos.Delete(id);
+            var data = await unitOfWork.Contents.Delete(id);
             return Ok(data);
         }
     }

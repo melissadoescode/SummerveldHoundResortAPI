@@ -23,9 +23,6 @@ namespace SummerveldHoundResort.WebAPI
         private static void SetupTransient(IServiceCollection services)
         {
             // Transient - Always a new instance
-            services
-                .AddTransient<IDbConnectionFactory, DbConnectionFactory>()
-                .AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         private static void SetupScoped(IServiceCollection services)
@@ -36,15 +33,16 @@ namespace SummerveldHoundResort.WebAPI
                 .AddScoped<IDoggoRepository, DoggoRepository>()
                 .AddScoped<IIconRepository, IconRepository>()
                 .AddScoped<ILifeEventRepository, LifeEventRepository>()
-                .AddScoped<IDoggoAlbumRepository, DoggoAlbumRepository>()
-                .AddScoped<IDoggoContentRepository, DoggoContentRepository>()
-                .AddScoped<IDoggoPhotoRepository, DoggoPhotoRepository>()
-                .AddScoped<IDoggoVideoRepository, DoggoVideoRepository>();
+                .AddScoped<IAlbumRepository, AlbumRepository>()
+                .AddScoped<IContentRepository, ContentRepository>();
         }
 
         private static void SetupSingleton(IServiceCollection services)
         {
             // Singleton - Always the same instance 
+            services
+                .AddTransient<IDbConnectionFactory, DbConnectionFactory>()
+                .AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }
 }

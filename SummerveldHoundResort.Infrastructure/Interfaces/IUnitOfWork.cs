@@ -11,9 +11,7 @@ namespace SummerveldHoundResort.Infrastructure.Interfaces
         IDoggoRepository Doggos { get; }
         IIconRepository Icons { get; }
         ILifeEventRepository LifeEvents { get; }
-        IDoggoAlbumRepository DoggoAlbums { get; }
-        IDoggoContentRepository DoggoContents { get; }
-        IDoggoPhotoRepository DoggoPhotos { get; }
-        IDoggoVideoRepository DoggoVideos { get; }
+        IAlbumRepository Albums { get; }
+        IContentRepository Contents { get; }
     }
 }

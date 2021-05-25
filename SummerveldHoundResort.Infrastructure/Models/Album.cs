@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SummerveldHoundResort.Infrastructure.Models
 {
-    public class DoggoAlbum
+    public class Album
     {
-        public int DoggoAlbumId { get; set; }
+        public int AlbumId { get; set; }
         public int DoggoId { get; set; }
-        public string DoggoAlbumName { get; set; }
-        public DateTime DoggoAlbumDateCreated { get; set; }
+        public string AlbumName { get; set; }
+        public DateTime AlbumDateCreated { get; set; }
     }
 }
