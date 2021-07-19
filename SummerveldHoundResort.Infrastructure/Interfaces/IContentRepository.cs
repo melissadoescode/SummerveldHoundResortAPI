@@ -1,4 +1,5 @@
 ﻿using SummerveldHoundResort.Infrastructure.Models;
+using SummerveldHoundResort.Infrastructure.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace SummerveldHoundResort.Infrastructure.Interfaces
 {
     public interface IContentRepository : IGenericRepository<Content>
     {
+        Task<List<ContentViewModel>> GetByAlbumId(int albumId);    
     }
 }

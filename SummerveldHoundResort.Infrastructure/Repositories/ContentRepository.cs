@@ -2,6 +2,7 @@
 using SummerveldHoundResort.Infrastructure.Interfaces;
 using SummerveldHoundResort.Infrastructure.Interfaces.Dapper;
 using SummerveldHoundResort.Infrastructure.Models;
+using SummerveldHoundResort.Infrastructure.Models.ViewModels;
 using SummerveldHoundResort.Infrastructure.Repositories.DbConnection;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,16 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
                     ContentId = contentId
                 }, commandType: CommandType.StoredProcedure);
             return getById.FirstOrDefault();
+        }    
+        
+        public async Task<List<ContentViewModel>> GetByAlbumId(int albumId)
+        {
+            var getById = await DbConnection.QueryAsync<ContentViewModel>("GetContentByAlbumId",
+                new
+                {
+                    AlbumId = albumId
+                }, commandType: CommandType.StoredProcedure);
+            return getById.ToList();
         }
 
         public async Task<int> Update(Content content)

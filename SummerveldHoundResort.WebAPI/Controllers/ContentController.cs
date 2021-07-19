@@ -42,10 +42,19 @@ namespace SummerveldHoundResort.WebAPI.Controllers
             return Ok(data);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update(Content doggoContent)
+        [HttpGet]
+        [Route("getContentByAlbumId")]
+        public async Task<IActionResult> GetContentByAlbumId(int albumId)
         {
-            var data = await unitOfWork.Contents.Update(doggoContent);
+            var data = await unitOfWork.Contents.GetByAlbumId(albumId);
+            if (data == null) return Ok();
+            return Ok(data);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(Content content)
+        {
+            var data = await unitOfWork.Contents.Update(content);
             return Ok(data);
         }
 
