@@ -34,7 +34,9 @@ namespace SummerveldHoundResort.WebAPI
                 .AddScoped<IIconRepository, IconRepository>()
                 .AddScoped<ILifeEventRepository, LifeEventRepository>()
                 .AddScoped<IAlbumRepository, AlbumRepository>()
-                .AddScoped<IContentRepository, ContentRepository>();
+                .AddScoped<IContentRepository, ContentRepository>()
+                .AddScoped<IVolunteerRepository, VolunteerRepository>()
+                .AddScoped<IVolunteerPreferencesRepository, VolunteerPreferencesRepository>();
         }
 
         private static void SetupSingleton(IServiceCollection services)

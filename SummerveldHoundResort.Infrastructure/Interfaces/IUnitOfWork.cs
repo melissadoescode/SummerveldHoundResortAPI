@@ -13,5 +13,7 @@ namespace SummerveldHoundResort.Infrastructure.Interfaces
         ILifeEventRepository LifeEvents { get; }
         IAlbumRepository Albums { get; }
         IContentRepository Contents { get; }
+        IVolunteerRepository Volunteer { get; }
+        IVolunteerPreferencesRepository VolunteerPreferences { get; }
     }
 }
