@@ -10,6 +10,6 @@ namespace SummerveldHoundResort.Infrastructure.Interfaces
 {
     public interface ILifeEventRepository: IGenericRepository<LifeEvent>
     {
-        Task<LifeEventViewModel> GetLifeEventById(int id);
+        Task<List<LifeEventViewModel>> GetLifeEventById(int id);
     }
 }

@@ -49,14 +49,14 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
             return getById.FirstOrDefault();
         }
 
-        public async Task<LifeEventViewModel> GetLifeEventById(int doggoId)
+        public async Task<List<LifeEventViewModel>> GetLifeEventById(int doggoId)
         {
             var getById = await DbConnection.QueryAsync<LifeEventViewModel>("GetLifeEventByDoggoId",
-                            new
-                            {
-                                DoggoId = doggoId
-                            }, commandType: CommandType.StoredProcedure);
-            return getById.FirstOrDefault();
+                 new
+                 {
+                     DoggoId = doggoId
+                 }, commandType: CommandType.StoredProcedure);
+            return getById.ToList();
         }
 
         public async Task<int> Update(LifeEvent lifeEvent)

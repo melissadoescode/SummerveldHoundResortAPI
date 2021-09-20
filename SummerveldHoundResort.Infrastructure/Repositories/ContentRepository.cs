@@ -48,12 +48,12 @@ namespace SummerveldHoundResort.Infrastructure.Repositories
             return getById.FirstOrDefault();
         }    
         
-        public async Task<List<ContentViewModel>> GetByAlbumId(int albumId)
+        public async Task<List<ContentViewModel>> GetByDoggoId(int doggoId)
         {
-            var getById = await DbConnection.QueryAsync<ContentViewModel>("GetContentByAlbumId",
+            var getById = await DbConnection.QueryAsync<ContentViewModel>("GetContentByDoggoId",
                 new
                 {
-                    AlbumId = albumId
+                    DoggoId = doggoId
                 }, commandType: CommandType.StoredProcedure);
             return getById.ToList();
         }

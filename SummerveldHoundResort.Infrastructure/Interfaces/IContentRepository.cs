@@ -10,6 +10,6 @@ namespace SummerveldHoundResort.Infrastructure.Interfaces
 {
     public interface IContentRepository : IGenericRepository<Content>
     {
-        Task<List<ContentViewModel>> GetByAlbumId(int albumId);    
+        Task<List<ContentViewModel>> GetByDoggoId(int albumId);    
     }
 }
